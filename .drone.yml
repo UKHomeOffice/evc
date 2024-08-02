@@ -161,7 +161,10 @@ steps:
     commands:
       - sh bin/deploy.sh $${UAT_ENV}
     when:
-      branch: master
+      branch:
+        include:
+          - master
+          - feature/* # this feature is to be removed when merging to master
       event: push
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
