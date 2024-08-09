@@ -10,5 +10,5 @@ spec:
   - "*.branch.sas-notprod.homeoffice.gov.uk"  
   issuerRef:
     kind: ClusterIssuer
-    name: letsencrypt-prod
+    name: letsencrypt-staging
   secretName: branch-tls-external

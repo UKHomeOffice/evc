@@ -60,7 +60,7 @@ steps:
       IGNORE_UNFIXED: false
       ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     when:
-      event: [push, pull_request]
+      event: push
 
   - name: sonar_scanner_deploy
     <<: *sonar_scanner
@@ -96,7 +96,6 @@ steps:
       repo: sas/evc 
       registry: 340268328991.dkr.ecr.eu-west-2.amazonaws.com
       tags:
-        - latest_${DRONE_BRANCH}
         - ${DRONE_COMMIT_SHA}
     when:
       branch: 
@@ -120,7 +119,7 @@ steps:
       IGNORE_UNFIXED: false
       ALLOW_CVE_LIST_FILE: hof-services-config/E_Visa_Contact_Us/trivy/.trivyignore.yaml
     when:
-      event: [push, pull_request]
+      event: push
 
   # Deploy to pull request UAT environment
   - name: deploy_to_branch
@@ -161,7 +160,10 @@ steps:
     commands:
       - sh bin/deploy.sh $${UAT_ENV}
     when:
-      branch: master
+      branch:
+        include:
+          - master
+          - feature/* # this feature is to be removed when merging to master
       event: push
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
