@@ -27,7 +27,7 @@
   "homepage": "https://github.com/UKHomeOffice/evisa-contact-form#readme",
   "dependencies": {
     "accessible-autocomplete": "^2.0.4",
-    "bl": "^6.0.12",
+    "bl": "^6.0.15",
     "busboy": "^1.6.0",
     "form-data": "^4.0.0",
     "hof": "^21.0.1",
